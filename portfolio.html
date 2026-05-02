@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dipti Chaudhari — Frontend Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+  .hero-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-right {
+  max-width: 600px;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* glowing ring */
+.hero-left::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #FF3CAC, #784BA0, #00D4FF, #FFD93D);
+  animation: spin 4s linear infinite;
+  z-index: 1;
+}
+
+.hero-left::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: white;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+  :root {
+    --hot-pink: #FF3CAC;
+    --purple: #784BA0;
+    --blue: #2B86C5;
+    --cyan: #00D4FF;
+    --orange: #FF6B35;
+    --yellow: #FFD93D;
+    --lime: #6BCB77;
+    --white: #ffffff;
+    --off-white: #F8F5FF;
+    --dark: #1a0533;
+    --card-bg: rgba(255,255,255,0.92);
+    --grad1: linear-gradient(135deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    --grad2: linear-gradient(135deg, #FF6B35, #FFD93D);
+    --grad3: linear-gradient(135deg, #6BCB77, #00D4FF);
+    --grad4: linear-gradient(135deg, #784BA0, #FF3CAC);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ANIMATED BG */
+  .hero-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: var(--grad1);
+    opacity: 0.08;
+  }
+
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    animation: blobFloat 8s ease-in-out infinite;
+    z-index: -1;
+  }
+  .blob1 { width: 500px; height: 500px; background: var(--hot-pink); top: -100px; left: -100px; animation-delay: 0s; }
+  .blob2 { width: 400px; height: 400px; background: var(--cyan); top: 30%; right: -100px; animation-delay: 2s; }
+  .blob3 { width: 350px; height: 350px; background: var(--yellow); bottom: 10%; left: 20%; animation-delay: 4s; }
+
+  @keyframes blobFloat {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,60,172,0.15);
+    box-shadow: 0 4px 30px rgba(120,75,160,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: var(--grad1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 2px;
+    background: var(--grad1);
+    transition: width 0.3s;
+    border-radius: 2px;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* HERO */
+    
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-content { max-width: 800px; }
+    
+  .hero-badge {
+    display: inline-block;
+    background: var(--grad2);
+    color: var(--dark);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideDown 0.8s ease both;
+    box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    animation: fadeSlideUp 0.8s ease 0.2s both;
+  }
+
+  .hero h1 .name-gradient {
+    background: var(--grad1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-roles {
+    font-size: 1.3rem;
+    color: var(--purple);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.8s ease 0.4s both;
+    min-height: 2rem;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    animation: fadeSlideUp 0.8s ease 0.6s both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeSlideUp 0.8s ease 0.8s both;
+  }
+
+  .btn-primary {
+    background: var(--grad1);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 25px rgba(255,60,172,0.35);
+    transition: all 0.3s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(255,60,172,0.45); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--purple);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid var(--purple);
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { background: var(--purple); color: white; transform: translateY(-3px); }
+
+  .scroll-down {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s ease infinite;
+    font-size: 1.5rem;
+    color: var(--purple);
+    opacity: 0.6;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(10px)} }
+
+  /* FLOATING TAGS */
+  .floating-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    animation: fadeSlideUp 0.8s ease 1s both;
+  }
+  .ftag {
+    background: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(120,75,160,0.2);
+    color: var(--purple);
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+  .ftag:hover { background: var(--grad1); color: white; border-color: transparent; transform: scale(1.05); }
+
+  /* SECTIONS */
+  section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--hot-pink);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--dark);
+  }
+  .section-title span {
+    background: var(--grad1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-line {
+    width: 60px; height: 4px;
+    background: var(--grad2);
+    border-radius: 10px;
+    margin: 1rem auto 0;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 8px 30px rgba(120,75,160,0.08);
+    border: 1px solid rgba(120,75,160,0.1);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s;
+  }
+  .skill-card.visible { opacity: 1; transform: translateY(0); }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    border-radius: 20px 20px 0 0;
+  }
+  .skill-card:nth-child(1)::before { background: var(--grad1); }
+  .skill-card:nth-child(2)::before { background: var(--grad2); }
+  .skill-card:nth-child(3)::before { background: var(--grad3); }
+  .skill-card:nth-child(4)::before { background: var(--grad4); }
+  .skill-card:nth-child(5)::before { background: linear-gradient(135deg, #00D4FF, #784BA0); }
+  .skill-card:nth-child(6)::before { background: linear-gradient(135deg, #FFD93D, #FF3CAC); }
+
+  .skill-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(120,75,160,0.18); }
+
+  .skill-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  .skill-cat {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--dark);
+    margin-bottom: 0.8rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .stag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 50px;
+    font-weight: 500;
+  }
+  .stag-pink { background: rgba(255,60,172,0.1); color: var(--hot-pink); }
+  .stag-purple { background: rgba(120,75,160,0.1); color: var(--purple); }
+  .stag-blue { background: rgba(43,134,197,0.1); color: var(--blue); }
+  .stag-orange { background: rgba(255,107,53,0.1); color: var(--orange); }
+  .stag-green { background: rgba(107,203,119,0.1); color: #3a9e4a; }
+  .stag-cyan { background: rgba(0,212,255,0.12); color: #0099bb; }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(120,75,160,0.1);
+    border: 1px solid rgba(255,60,172,0.12);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .exp-card.visible { opacity: 1; transform: translateX(0); }
+  .exp-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 180px; height: 180px;
+    background: var(--grad1);
+    opacity: 0.05;
+    border-radius: 50%;
+    transform: translate(40px, -40px);
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .exp-company {
+    background: var(--grad1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .exp-badge {
+    background: var(--grad2);
+    color: var(--dark);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .exp-points { list-style: none; }
+  .exp-points li {
+    padding: 0.6rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-bottom: 1px dashed rgba(120,75,160,0.1);
+  }
+  .exp-points li:last-child { border-bottom: none; }
+  .exp-points li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--hot-pink);
+    font-size: 0.8rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .proj-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(120,75,160,0.1);
+    border: 1px solid rgba(120,75,160,0.1);
+    transition: all 0.4s;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s;
+  }
+  .proj-card.visible { opacity: 1; transform: translateY(0); }
+  .proj-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(120,75,160,0.2); }
+
+  .proj-banner {
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .proj-banner-1 { background: linear-gradient(135deg, #FF3CAC, #784BA0); }
+  .proj-banner-2 { background: linear-gradient(135deg, #FF6B35, #FFD93D); }
+  .proj-banner-3 { background: linear-gradient(135deg, #6BCB77, #00D4FF); }
+
+  .proj-body { padding: 1.8rem; }
+  .proj-status {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .status-done { background: rgba(107,203,119,0.15); color: #3a9e4a; }
+  .status-wip { background: rgba(255,107,53,0.12); color: var(--orange); }
+
+  .proj-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+  }
+  .proj-desc { font-size: 0.88rem; color: #555; line-height: 1.7; margin-bottom: 1rem; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .proj-tag {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 50px;
+    background: rgba(120,75,160,0.08);
+    color: var(--purple);
+    font-weight: 500;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .edu-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(120,75,160,0.08);
+    border: 1px solid rgba(120,75,160,0.1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .edu-card.visible { opacity: 1; transform: translateY(0); }
+  .edu-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.3rem;
+  }
+  .edu-inst { color: var(--purple); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .edu-meta { display: flex; justify-content: space-between; align-items: center; }
+  .edu-year { font-size: 0.8rem; color: #888; }
+  .edu-score {
+    background: var(--grad1);
+    color: white;
+    padding: 0.25rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .edu-score-2 {
+    background: var(--grad2);
+    color: var(--dark);
+    padding: 0.25rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--grad1);
+    border-radius: 30px;
+    padding: 4rem 3rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(255,60,172,0.3);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .contact-section.visible { opacity: 1; transform: scale(1); }
+  .contact-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.8rem;
+  }
+  .contact-section p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 2rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .contact-link:hover { background: white; color: var(--purple); transform: translateY(-3px); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: #888;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(120,75,160,0.1);
+  }
+  footer span {
+    background: var(--grad1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 3rem auto 0;
+    padding: 0 1rem;
+  }
+  .stat-item {
+    text-align: center;
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.2rem;
+    box-shadow: 0 4px 20px rgba(120,75,160,0.08);
+    border: 1px solid rgba(120,75,160,0.08);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    background: var(--grad1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 0.75rem; color: #888; font-weight: 500; margin-top: 0.2rem; }
+
+  /* TYPING ANIMATION */
+  .typing-text {
+    border-right: 3px solid var(--hot-pink);
+    animation: blink 0.7s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{border-color:var(--hot-pink)} 50%{border-color:transparent} }
+
+  /* ANIMATIONS */
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .hero-btns { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BG EFFECTS -->
+<div class="hero-bg"></div>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DC✦</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="about">
+  <div class="hero-content">
+    <div class="hero-flex">
+  <div class="hero-left">
+    <img src="C:\Users\Dipti\Pictures\Screenshots\Screenshot 2026-05-02 120912.png" alt="Dipti" class="profile-img">
+  </div>
+
+  
+
+  <div class="hero-right">
+    <div class="hero-badge">✦ Available for Remote Opportunities ✦</div>
+    <h1>Hi, I'm <span class="name-gradient">Dipti Chaudhari</span></h1>
+    <div class="hero-roles">
+      <span id="typing-target" class="typing-text"></span>
+    </div>
+    <div class="floating-tags">
+      <span class="ftag">React.js</span>
+      <span class="ftag">Next.js</span>
+      <span class="ftag">JavaScript</span>
+      <span class="ftag">Spring Boot</span>
+      <span class="ftag">Redux</span>
+      <span class="ftag">REST APIs</span>
+      <span class="ftag">MySQL</span>
+    </div>
+    <p class="hero-desc">
+      Frontend Developer with 6 months of hands-on experience building responsive, 
+      performant web apps. Delivered 20% boost in user engagement and 15–20% faster 
+      load times. Passionate about clean code and beautiful UIs.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View My Work →</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="scroll-down">↓</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">6+</div>
+    <div class="stat-label">Months Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">UI Components Built</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">20%</div>
+    <div class="stat-label">Engagement Boost</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Projects Delivered</div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <div class="section-label">What I Know</div>
+    <h2 class="section-title">Technical <span>Skills</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">⚛️</div>
+      <div class="skill-cat">Frontend Technologies</div>
+      <div class="skill-tags">
+        <span class="stag stag-pink">React.js</span>
+        <span class="stag stag-pink">HTML5</span>
+        <span class="stag stag-pink">CSS3</span>
+        <span class="stag stag-pink">JavaScript ES6+</span>
+        <span class="stag stag-pink">Bootstrap</span>
+        <span class="stag stag-pink">React Hooks</span>
+        <span class="stag stag-pink">SPA</span>
+        <span class="stag stag-pink">JSX</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-cat">UI & Design</div>
+      <div class="skill-tags">
+        <span class="stag stag-purple">Responsive Design</span>
+        <span class="stag stag-purple">CSS Flexbox</span>
+        <span class="stag stag-purple">CSS Grid</span>
+        <span class="stag stag-purple">UI/UX Principles</span>
+        <span class="stag stag-purple">Mobile-First</span>
+        <span class="stag stag-purple">Cross-Browser</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔌</div>
+      <div class="skill-cat">API & Integration</div>
+      <div class="skill-tags">
+        <span class="stag stag-blue">RESTful API</span>
+        <span class="stag stag-blue">Axios</span>
+        <span class="stag stag-blue">Fetch API</span>
+        <span class="stag stag-blue">AJAX</span>
+        <span class="stag stag-blue">JSON</span>
+        <span class="stag stag-blue">TMDB API</span>
+        <span class="stag stag-blue">OpenWeather API</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☕</div>
+      <div class="skill-cat">Backend Technologies</div>
+      <div class="skill-tags">
+        <span class="stag stag-orange">Java</span>
+        <span class="stag stag-orange">Spring Boot</span>
+        <span class="stag stag-orange">Spring MVC</span>
+        <span class="stag stag-orange">Microservices</span>
+        <span class="stag stag-orange">JDBC</span>
+        <span class="stag stag-orange">Servlet</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-cat">Database</div>
+      <div class="skill-tags">
+        <span class="stag stag-green">MySQL</span>
+        <span class="stag stag-green">PostgreSQL</span>
+        <span class="stag stag-green">SQL</span>
+        <span class="stag stag-green">DB Design</span>
+        <span class="stag stag-green">Indexing</span>
+        <span class="stag stag-green">CRUD</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🛠️</div>
+      <div class="skill-cat">Tools & DevOps</div>
+      <div class="skill-tags">
+        <span class="stag stag-cyan">Git</span>
+        <span class="stag stag-cyan">GitHub</span>
+        <span class="stag stag-cyan">Jenkins</span>
+        <span class="stag stag-cyan">Docker</span>
+        <span class="stag stag-cyan">Postman</span>
+        <span class="stag stag-cyan">CI/CD</span>
+        <span class="stag stag-cyan">VS Code</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: rgba(255,255,255,0.5); border-radius: 40px; max-width: 900px;">
+  <div class="section-header">
+    <div class="section-label">Where I've Worked</div>
+    <h2 class="section-title">Work <span>Experience</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Web Developer Intern</div>
+        <div class="exp-company">Welintern — Remote</div>
+      </div>
+      <div class="exp-badge">Nov 2025 – Apr 2026 · 6 Months Stipend type</div>
+    </div>
+    <ul class="exp-points">
+      <li>Developed and maintained responsive web applications using React.js, HTML5, CSS3, and Bootstrap; built 10+ reusable UI components improving user engagement by <strong>20%</strong>.</li>
+      <li>Integrated RESTful APIs using Fetch API and AJAX for dynamic, real-time data rendering; eliminated data-handling errors across all tested frontend user flows.</li>
+      <li>Collaborated with backend team to connect Spring Boot APIs with React.js frontend; reduced average page load time by <strong>15–20%</strong> through performance optimization techniques.</li>
+      <li>Worked in Agile/Scrum environment — participated in sprint planning, daily standups, and code reviews; followed clean code principles and component-based architecture throughout.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <div class="section-label">What I've Built</div>
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="proj-banner proj-banner-1">🎬</div>
+      <div class="proj-body">
+        <span class="proj-status status-done">✓ Completed</span>
+        <div class="proj-name">Netflix Clone</div>
+        <p class="proj-desc">Fully functional Netflix-style streaming UI with genre-based content rows, movie cards, hover effects, and detail modals. Achieved 40% reduction in unnecessary re-renders.</p>
+        <div class="proj-stack">
+          <span class="proj-tag">React.js</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">CSS3</span>
+          <span class="proj-tag">TMDB API</span>
+          <span class="proj-tag">REST API</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-banner proj-banner-2">🔧</div>
+      <div class="proj-body">
+        <span class="proj-status status-wip">⟳ In Progress</span>
+        <div class="proj-name">NearFix — Service Marketplace</div>
+        <p class="proj-desc">Full stack multi-role service booking platform with customer & provider dashboards, role-based access control, and 15+ REST API endpoints. Targeting 30% faster query response.</p>
+        <div class="proj-stack">
+          <span class="proj-tag">React.js</span>
+          <span class="proj-tag">Spring Boot</span>
+          <span class="proj-tag">MySQL</span>
+          <span class="proj-tag">REST APIs</span>
+          <span class="proj-tag">Bootstrap</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-banner proj-banner-3">⛅</div>
+      <div class="proj-body">
+        <span class="proj-status status-done">✓ Completed</span>
+        <div class="proj-name">Weather Dashboard</div>
+        <p class="proj-desc">Real-time weather dashboard integrating OpenWeather API via Fetch/AJAX. Live city weather data with zero page reloads, error handling, and sub-1-second load time.</p>
+        <div class="proj-stack">
+          <span class="proj-tag">HTML5</span>
+          <span class="proj-tag">CSS3</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">OpenWeather API</span>
+          <span class="proj-tag">AJAX</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <div class="section-label">My Learning Journey</div>
+    <h2 class="section-title">Education & <span>Training</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-degree">B.Sc. Computer Science</div>
+      <div class="edu-inst">KBCNMU, Jalgaon</div>
+      <div class="edu-meta">
+        <span class="edu-year">2022 – 2025</span>
+        <span class="edu-score">CGPA 8.67/10</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">💻</div>
+      <div class="edu-degree">Java Full Stack Web Development</div>
+      <div class="edu-inst">Itvedant Pvt. Ltd., Pune</div>
+      <div class="edu-meta">
+        <span class="edu-year">2025 – Present</span>
+        <span class="edu-score-2">Pursuing</span>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📚</div>
+      <div class="edu-degree">HSC (12th) — Science</div>
+      <div class="edu-inst">Maharashtra State Board</div>
+      <div class="edu-meta">
+        <span class="edu-year">2021</span>
+        <span class="edu-score">80.33%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-bottom: 6rem;">
+  <div class="contact-section">
+    <h2>Let's Work Together ✨</h2>
+    <p>I'm actively looking for remote Frontend Developer, React Developer, or Full Stack Developer roles. Let's connect!</p>
+    <div class="contact-links">
+      <a href="mailto:chaudharidipti50@gmail.com" class="contact-link">📧 Email Me</a>
+      <a href="https://linkedin.com/in/dipti-chaudhari-960b8724b" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="https://github.com/diptic839" target="_blank" class="contact-link">🐙 GitHub</a>
+      <a href="tel:+917972839880" class="contact-link">📞 Call Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & Built with 💜 by <span>Dipti Chaudhari</span> · · 2026</p>
+</footer>
+
+<script>
+// TYPING ANIMATION
+const roles = [
+  'Frontend Developer',
+  'React.js Developer',
+  'Full Stack Developer',
+  'Web Developer'
+];
+let ri = 0, ci = 0, deleting = false;
+const el = document.getElementById('typing-target');
+
+function type() {
+  const cur = roles[ri];
+  if (!deleting) {
+    el.textContent = cur.slice(0, ++ci);
+    if (ci === cur.length) { deleting = true; setTimeout(type, 1800); return; }
+  } else {
+    el.textContent = cur.slice(0, --ci);
+    if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+  }
+  setTimeout(type, deleting ? 60 : 110);
+}
+type();
+
+// INTERSECTION OBSERVER for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.skill-card, .exp-card, .proj-card, .edu-card, .contact-section').forEach(el => observer.observe(el));
+
+// Staggered animation delays
+document.querySelectorAll('.skill-card').forEach((c, i) => c.style.transitionDelay = (i * 0.1) + 's');
+document.querySelectorAll('.proj-card').forEach((c, i) => c.style.transitionDelay = (i * 0.15) + 's');
+document.querySelectorAll('.edu-card').forEach((c, i) => c.style.transitionDelay = (i * 0.1) + 's');
+</script>
+</body>
+</html>
